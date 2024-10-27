@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prepare-se para a PM-SE com a CICLO</title>
+    <title>Black Caveira PM-SE - CICLO</title>
     <style>
         /* Estilos CSS */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('fundo_policia.png'); /* Substitua com o fundo específico */
+            background-image: url('assets/img/blackcaveira_bg.jpg'); /* Fundo da página */
             background-size: cover;
+            background-position: center;
             color: #FFFFFF;
         }
 
@@ -37,6 +38,7 @@
             margin-top: 30px;
         }
 
+        /* Estilo dos botões com efeito de brilho */
         .cta-buttons button {
             padding: 15px 30px;
             font-size: 1.1em;
@@ -46,11 +48,26 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: glow 1.5s infinite alternate;
         }
 
+        /* Animação para efeito de brilho */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #28a745, 0 0 10px #28a745, 0 0 15px #28a745;
+            }
+            100% {
+                box-shadow: 0 0 20px #28a745, 0 0 30px #28a745, 0 0 40px #28a745;
+            }
+        }
+
+        /* Efeito no hover para interromper o piscar e aumentar o botão */
         .cta-buttons button:hover {
-            background-color: #333333;
+            animation: none;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #28a745, 0 0 30px #28a745, 0 0 40px #28a745;
+            background-color: #1e7e34;
         }
 
         .description {
@@ -60,40 +77,72 @@
             max-width: 280px;
         }
 
-        .form-container {
+        /* Estilo para o pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            margin-top: 20px;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-
-        input[type="email"], input[type="tel"] {
+        .popup input[type="email"], .popup input[type="tel"] {
             padding: 10px;
             font-size: 1em;
             width: 80%;
             max-width: 300px;
             border: 1px solid #CCCCCC;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
 
-        button[type="submit"] {
+        .popup button {
             padding: 10px 20px;
             font-size: 1em;
+            font-weight: bold;
             color: #FFFFFF;
-            background-color: #1a1a1a;
+            background: linear-gradient(45deg, #28a745, #1e7e34); /* Gradiente verde */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        button[type="submit"]:hover {
-            background-color: #333333;
+        .popup button:hover {
+            background: linear-gradient(45deg, #1e7e34, #28a745);
+        }
+
+        .popup p {
+            color: #000000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Seções adicionais */
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 30px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-size: 0.9em;
+            color: #CCCCCC;
+        }
+
+        .footer .developer {
+            font-size: 0.75em;
+            color: #999999;
         }
     </style>
 </head>
@@ -106,59 +155,72 @@
 
             <!-- Botões de escolha para cadastro -->
             <div class="cta-buttons">
-                <button id="email-btn" onclick="showForm('email')">Cadastrar com E-mail</button>
+                <button onclick="showPopup('email')">Cadastrar com E-mail</button>
                 <p class="description">Receba conteúdos exclusivos e atualizações importantes diretamente no seu e-mail.</p>
                 
-                <button id="whatsapp-btn" onclick="showForm('whatsapp')">Cadastrar com WhatsApp</button>
+                <button onclick="showPopup('whatsapp')">Cadastrar com WhatsApp</button>
                 <p class="description">Fique por dentro das novidades de forma rápida e prática diretamente no WhatsApp.</p>
             </div>
         </div>
     </header>
 
-    <!-- Divs para os formulários, inicialmente ocultas -->
-    <div id="email-form-container" class="form-container" style="display: none;">
-        <form id="email-form" onsubmit="submitForm('email'); return false;">
-            <label for="email">Digite seu e-mail:</label>
-            <input type="email" id="email" name="email" required>
-            <button type="submit">Enviar</button>
-        </form>
+    <!-- Pop-up para os formulários -->
+    <div id="popup-email" class="popup">
+        <p>Digite seu e-mail para ter acesso ao Black Caveira</p>
+        <input type="email" placeholder="Seu e-mail" required>
+        <button onclick="submitPopup()">Sim, quero ter acesso a Black Caveira</button>
     </div>
 
-    <div id="whatsapp-form-container" class="form-container" style="display: none;">
-        <form id="whatsapp-form" onsubmit="submitForm('whatsapp'); return false;">
-            <label for="phone">Digite seu número de WhatsApp:</label>
-            <input type="tel" id="phone" name="phone" required>
-            <button type="submit">Enviar</button>
-        </form>
+    <div id="popup-whatsapp" class="popup">
+        <p>Digite seu número de WhatsApp para ter acesso ao Black Caveira</p>
+        <input type="tel" placeholder="Seu número de WhatsApp" required>
+        <button onclick="submitPopup()">Sim, quero ter acesso a Black Caveira</button>
     </div>
+
+    <!-- Seções adicionais -->
+    <section class="section">
+        <h2>Quem é a CICLO</h2>
+        <p>A CICLO é uma instituição que já aprovou milhares de candidatos em concursos públicos, especialmente na área militar.</p>
+    </section>
+
+    <section class="section">
+        <h2>Aprovamos na PM</h2>
+        <p>Com a metodologia Black Caveira, você aumenta suas chances de sucesso no concurso da PM-SE.</p>
+    </section>
+
+    <section class="section">
+        <button onclick="scrollToTop()" style="padding: 15px 30px; font-size: 1.1em; color: #FFFFFF; background-color: #1a1a1a; border: none; border-radius: 5px; cursor: pointer;">Quero me Cadastrar na Black Caveira</button>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <img src="ciclo_logo_small.png" alt="Logo Ciclo" style="max-width: 50px;">
+        <p>© 2024 CICLO - Todos os direitos reservados.</p>
+        <p class="developer">Developed by Caio Vilanova</p>
+    </footer>
 
     <script>
-        // scripts.js - Funções JavaScript
-        function showForm(type) {
-            // Oculta ambos os formulários inicialmente
-            document.getElementById('email-form-container').style.display = 'none';
-            document.getElementById('whatsapp-form-container').style.display = 'none';
-
-            // Exibe o formulário correspondente com base no tipo escolhido
+        // Função para mostrar o pop-up
+        function showPopup(type) {
+            document.getElementById('popup-email').style.display = 'none';
+            document.getElementById('popup-whatsapp').style.display = 'none';
             if (type === 'email') {
-                document.getElementById('email-form-container').style.display = 'block';
+                document.getElementById('popup-email').style.display = 'block';
             } else if (type === 'whatsapp') {
-                document.getElementById('whatsapp-form-container').style.display = 'block';
+                document.getElementById('popup-whatsapp').style.display = 'block';
             }
         }
 
-        function submitForm(type) {
-            // Mensagem de confirmação personalizada
-            let message = type === 'email' 
-                ? "Cadastro por e-mail realizado! Deseja também cadastrar-se pelo WhatsApp?"
-                : "Cadastro pelo WhatsApp realizado! Deseja também cadastrar-se por e-mail?";
+        // Função para simular a submissão do formulário no pop-up
+        function submitPopup() {
+            alert("Cadastro realizado com sucesso!"); // Mensagem de sucesso
+            document.getElementById('popup-email').style.display = 'none';
+            document.getElementById('popup-whatsapp').style.display = 'none';
+        }
 
-            // Mostra a mensagem de confirmação no formulário correspondente
-            if (type === 'email') {
-                document.getElementById('email-form-container').innerHTML = `<p>${message}</p>`;
-            } else if (type === 'whatsapp') {
-                document.getElementById('whatsapp-form-container').innerHTML = `<p>${message}</p>`;
-            }
+        // Função para rolar até o topo da página
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
