@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare-se para a PM-SE com a CICLO</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('fundo_policia.png'); /* Substitua com o fundo específico */
+            background-size: cover;
+            color: #FFFFFF;
+        }
+
+        .top-container {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Efeito escurecido para destacar o texto */
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #FFD700; /* Cor ouro para destaque */
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cta-buttons button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-buttons button:hover {
+            background-color: #333333;
+        }
+
+        .description {
+            font-size: 0.9em;
+            color: #CCCCCC;
+            text-align: center;
+            max-width: 280px;
+        }
+
+        .form-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="email"], input[type="tel"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #FFFFFF;
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-container">
+            <img src="blackcaveira_logo.png" alt="Black Caveira PM-SE" class="logo">
+            <h1>A maior oportunidade para se preparar e ser aprovado na PM-SE</h1>
+            <p class="subtitle">A CICLO é quem mais aprovou nesse concurso</p>
+
+            <!-- Botões de escolha para cadastro -->
+            <div class="cta-buttons">
+                <button id="email-btn" onclick="showForm('email')">Cadastrar com E-mail</button>
+                <p class="description">Receba conteúdos exclusivos e atualizações importantes diretamente no seu e-mail.</p>
+                
+                <button id="whatsapp-btn" onclick="showForm('whatsapp')">Cadastrar com WhatsApp</button>
+                <p class="description">Fique por dentro das novidades de forma rápida e prática diretamente no WhatsApp.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Divs para os formulários, inicialmente ocultas -->
+    <div id="email-form-container" class="form-container" style="display: none;">
+        <form id="email-form" onsubmit="submitForm('email'); return false;">
+            <label for="email">Digite seu e-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <div id="whatsapp-form-container" class="form-container" style="display: none;">
+        <form id="whatsapp-form" onsubmit="submitForm('whatsapp'); return false;">
+            <label for="phone">Digite seu número de WhatsApp:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        // scripts.js - Funções JavaScript
+        function showForm(type) {
+            // Oculta ambos os formulários inicialmente
+            document.getElementById('email-form-container').style.display = 'none';
+            document.getElementById('whatsapp-form-container').style.display = 'none';
+
+            // Exibe o formulário correspondente com base no tipo escolhido
+            if (type === 'email') {
+                document.getElementById('email-form-container').style.display = 'block';
+            } else if (type === 'whatsapp') {
+                document.getElementById('whatsapp-form-container').style.display = 'block';
+            }
+        }
+
+        function submitForm(type) {
+            // Mensagem de confirmação personalizada
+            let message = type === 'email' 
+                ? "Cadastro por e-mail realizado! Deseja também cadastrar-se pelo WhatsApp?"
+                : "Cadastro pelo WhatsApp realizado! Deseja também cadastrar-se por e-mail?";
+
+            // Mostra a mensagem de confirmação no formulário correspondente
+            if (type === 'email') {
+                document.getElementById('email-form-container').innerHTML = `<p>${message}</p>`;
+            } else if (type === 'whatsapp') {
+                document.getElementById('whatsapp-form-container').innerHTML = `<p>${message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
