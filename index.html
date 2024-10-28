@@ -215,6 +215,13 @@
             border: 1px solid #ccc;
         }
 
+        .form-container .input{
+            padding: 10px;
+            margin: 3px;
+            border: solid 3px #ccc;
+            font-size: 20px;
+
+        }
         .submit-button {
             padding: 12px 20px;
             font-size: 1.2em;
@@ -389,26 +396,26 @@
         </div>
     </header>
 
-    <!-- Pop-up de Cadastro -->
-    <div id="popup" class="popup-content">
-        <span class="popup-close" onclick="closePopup()">×</span>
-        <h2>Cadastre-se para Acesso Exclusivo</h2>
-        <form action="https://pmse.portalciclo.com.br/cadastro.php" method="POST" onsubmit="return validateForm()">
-            <input type="text" name="nome" placeholder="Seu Nome Completo" required>
-            <div class="row">
-                <input type="text" name="ddi" value="+55" readonly>
-                <input type="text" name="ddd" placeholder="DDD" maxlength="2" required>
-                <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required>
-            </div>
-            <input type="hidden" id="telefone-formatado" name="telefone">
-            <button type="submit" class="submit-button">Confirmar Acesso</button>
-        </form>
-    </div>
+<!-- Pop-up de Cadastro -->
+<div id="popup" class="popup-content">
+    <span class="popup-close" onclick="closePopup()">×</span>
+    <h2>Cadastre-se para Acesso Exclusivo</h2>
+    <form action="https://pmse.portalciclo.com.br/cadastro.php" method="POST" class="form-container" onsubmit="return validateForm()">
+        <input type="text" name="nome" placeholder="Seu Nome Completo" required  class="input">
+        <div class="row">
+            <input type="text" name="ddi" value="+55" readonly class="input">
+            <input type="text" name="ddd" placeholder="DDD" maxlength="2" required class="input">
+            <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required  class="input">
+        </div>
+        <input type="hidden" id="telefone-formatado" name="telefone">
+        <button type="submit" class="submit-button">Confirmar Acesso</button>
+    </form>
+</div>
 
 
     <!-- Pop-up de Vídeo -->
     <div id="video-popup" class="video-popup">
-        <span class="popup-close" onclick="closeVideoPopup()">×</span>
+        <span class="popup-close" onclick="closeVideoPopup()">X</span>
         <h2>Assista ao Vídeo</h2>
         <div id="video-container"></div>
     </div>
