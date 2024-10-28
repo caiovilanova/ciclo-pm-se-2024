@@ -11,14 +11,12 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
+        /* Estilos Gerais */
         html,
         body {
             overflow-x: hidden;
-        }
-
-        /* Estilos Gerais */
-        body {
             margin: 0;
+            padding: 0;
             font-family: 'Roboto', sans-serif;
             background-image: url('assets/img/blackcaveira_bg.jpg');
             background-size: cover;
@@ -26,6 +24,7 @@
             color: #FFFFFF;
         }
 
+        /* Header e Conteúdo Principal */
         .top-container {
             display: flex;
             flex-direction: column;
@@ -36,8 +35,10 @@
         }
 
         .top-container img.logo-large {
+            width: 70%;
             max-width: 300px;
-            margin-bottom: 20px;
+            height: auto;
+            /*margin-bottom: 20px;*/
         }
 
         .top-content h1 {
@@ -45,6 +46,7 @@
             font-size: 2.5em;
             font-weight: 600;
             margin: 0;
+            text-align: center;
         }
 
         .top-content p.subtitle {
@@ -56,8 +58,9 @@
             gap: 5px;
         }
 
+        /* Botão de Chamada para Ação (CTA) */
         .cta-button {
-            padding: 20px 40px;
+            padding: 15px 30px;
             font-size: 1.2em;
             font-weight: bold;
             color: #FFFFFF;
@@ -66,131 +69,172 @@
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: soft-glow 1.5s infinite alternate;
-            margin-top: 20px;
+            animation: pulse 1.5s infinite alternate;
         }
 
-        /* Animação de brilho suave */
-        @keyframes soft-glow {
+        @keyframes pulse {
             0% {
+                transform: scale(1);
                 box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
             }
 
             100% {
+                transform: scale(1.05);
                 box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
             }
         }
 
         .cta-button:hover {
-            animation: none;
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
+            transform: scale(1.1);
         }
 
-        /* Pop-up de Formulário */
-        .popup,
-        .video-popup {
+
+        #popup,
+        #video-popup {
             display: none;
+        }
+
+        /* Estilos para o pop-up de cadastro */
+        #popup {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            color: #FFFFFF;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #333;
-            animation: fadeIn 0.3s ease-in;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+        /* Estilos para o pop-up de vídeo */
+        #video-popup {
+            background-color: rgba(35, 35, 35, 0.87);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            width: 90%;
+            margin: auto;
+            color: #FFFFFF;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
 
-            to {
-                opacity: 1;
-            }
+        /* Estilos para o botão de fechar */
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #FFFFFF;
+        }
+
+        /* Pop-up de Formulário */
+        .popup-content {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            color: #FFFFFF;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
         }
 
         .popup-close {
             position: absolute;
             top: 10px;
             right: 15px;
-            cursor: pointer;
             font-size: 1.5em;
-            color: #333;
-        }
-
-        .menu-button {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            background: linear-gradient(45deg, #28a745, #1e7e34);
-            color: #FFF;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            color: #FFFFFF;
         }
 
-        .menu-button.submit-button {
-            background: linear-gradient(45deg, #1e7e34, #155724);
-            /* Verde mais escuro */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-
-        /* Formulários expansíveis */
-        .form-container {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease;
-            background-color: #f1f1f1;
-            padding: 0 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .form-container.expanded {
-            max-height: 200px;
-            padding: 10px;
-        }
-
+        /* Formulário */
         .form-container form {
             display: flex;
             flex-direction: column;
+            gap: 15px;
         }
 
-        .form-container input {
-            margin: 5px 0;
+        .form-container input[type="text"],
+        .form-container input[type="tel"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-container .row {
+            display: flex;
+            gap: 5px;
+        }
+
+        .form-container input[name="ddi"] {
+            width: 20%;
             padding: 10px;
             font-size: 1em;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
 
-        .section {
-            padding: 50px 20px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            width: 100%;
+        .form-container input[name="ddd"] {
+            width: 20%;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        .section h2 {
-            font-size: 2em;
-            font-family: 'Montserrat', sans-serif;
+        .form-container input[name="whatsapp"] {
+            flex: 2;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-button {
+            padding: 12px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
             color: #FFFFFF;
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Seção Geral */
+        .section {
+            width: 100%;
+            padding: 50px 0;
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .section-inner {
@@ -199,13 +243,37 @@
             padding: 20px;
         }
 
-
-        .section-inner h2 {
-            font-size: 2em;
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
             color: #FFFFFF;
+            text-align: center;
             margin-bottom: 20px;
         }
 
+        /* Layout em Duas Colunas */
+        .two-columns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .image-container {
+            flex: 1;
+            max-width: 100%;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .text-container {
+            flex: 2;
+            text-align: justify;
+        }
+
+        /* Estilos do Carrossel */
         .carousel {
             display: flex;
             overflow-x: auto;
@@ -213,14 +281,14 @@
             gap: 10px;
             padding: 20px 0;
             scrollbar-width: none;
-            /* Para navegadores Firefox */
+            /* Firefox */
             -ms-overflow-style: none;
-            /* Para navegadores Internet Explorer e Edge */
+            /* IE and Edge */
         }
 
         .carousel::-webkit-scrollbar {
             display: none;
-            /* Para navegadores Chrome, Safari e Opera */
+            /* Chrome, Safari, Opera */
         }
 
         .carousel-item {
@@ -239,45 +307,7 @@
             border-radius: 5px;
         }
 
-        .two-columns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .image-container {
-            flex: 1;
-            max-width: 400px;
-            /* Limita o tamanho da imagem */
-        }
-
-        .text-container {
-            text-align: justify;
-            flex: 2;
-            /* Ocupa o espaço restante */
-        }
-
-        @media (max-width: 768px) {
-            .two-columns {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .image-container,
-            .text-container {
-                max-width: 100%;
-                /* Para que ocupem toda a largura em telas pequenas */
-            }
-        }
-
-        .two-columns img {
-            max-width: 350px;
-            width: 100%;
-            border-radius: 8px;
-            /* Ajuste o valor para o arredondamento desejado */
-
-        }
-
+        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -290,18 +320,52 @@
             font-size: 0.75em;
             color: #999999;
         }
-    </style>
 
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .top-content h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            .two-columns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-container,
+            .text-container {
+                max-width: 100%;
+            }
+
+            .top-container img.logo-large {
+                width: 50%;
+                /* Ajusta para 50% da largura no smartphone */
+                max-width: 200px;
+                /* Limita o tamanho máximo no smartphone */
+            }
+        }
+    </style>
     <!-- Meta Pixel Code -->
     <script>
         !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
+            if (f.fbq) return;
+            n = f.fbq = function () {
                 n.callMethod ?
                     n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t, s)
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
@@ -310,68 +374,46 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=1360614991339284&ev=PageView&noscript=1" /></noscript>
+
 </head>
 
 <body>
-    
     <header>
         <div class="top-container">
             <img src="assets/img/blackcaveira_logo.png" alt="Black Caveira PM-SE" class="logo-large">
             <div class="top-content">
                 <h1>A maior oportunidade para se preparar e ser aprovado na PM-SE</h1>
-                <p class="subtitle">Aperte o botão que vai te deixar mais perto da farda! <i
-                        class="bi bi-arrow-down-circle-fill"></i></p>
+                <p class="subtitle">Aperte o botão que vai te deixar mais perto da farda!</p>
                 <button class="cta-button" onclick="showPopup()">Quero Ter Acesso a Black Caveira PM-SE</button>
             </div>
         </div>
     </header>
 
-    <!-- Pop-up com botões de acesso -->
-    <div id="popup" class="popup">
+    <!-- Pop-up de Cadastro -->
+    <div id="popup" class="popup-content">
         <span class="popup-close" onclick="closePopup()">×</span>
-        <button class="menu-button" onclick="toggleForm('emailForm')">
-            Ter acesso com meu E-mail <i class="bi bi-envelope-fill"></i>
-        </button>
-        <div id="emailForm" class="form-container">
-            <form onsubmit="submitForm(event, 'email')">
-
-                <!-- input de e-mail -->
-                <input type="email" placeholder="Seu e-mail" required id="email-input">
-
-                <!-- Botão de envio no formulário de e-mail -->
-                <button type="submit" class="menu-button submit-button">
-                    Confirmar meu acesso por e-mail <i class="bi bi-send-fill"></i>
-                </button>
-
-            </form>
-        </div>
-
-        <button class="menu-button" onclick="toggleForm('whatsappForm')">
-            Ter acesso com meu WhatsApp <i class="bi bi-whatsapp"></i>
-        </button>
-        <div id="whatsappForm" class="form-container">
-            <form onsubmit="submitForm(event, 'whatsapp')">
-
-                <input type="text" value="+55" disabled style="width: 20%; display: inline-block;">
-
-                <input type="tel" placeholder="Seu número de WhatsApp Ex: (79) 99899-0000" required id="whatsapp-input"
-                    style="width: 75%; display: inline-block;">
-
-                <!-- Botão de envio no formulário de WhatsApp -->
-                <button type="submit" class="menu-button submit-button">
-                    Confirmar meu acesso por whatsapp <i class="bi bi-send-fill"></i>
-                </button>
-            </form>
-        </div>
+        <h2>Cadastre-se para Acesso Exclusivo</h2>
+        <form action="https://pmse.portalciclo.com.br/cadastro.php" method="POST" onsubmit="return validateForm()">
+            <input type="text" name="nome" placeholder="Seu Nome Completo" required>
+            <div class="row">
+                <input type="text" name="ddi" value="+55" readonly>
+                <input type="text" name="ddd" placeholder="DDD" maxlength="2" required>
+                <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required>
+            </div>
+            <input type="hidden" id="telefone-formatado" name="telefone">
+            <button type="submit" class="submit-button">Confirmar Acesso</button>
+        </form>
     </div>
 
-    <!-- Pop-up para vídeos -->
+
+    <!-- Pop-up de Vídeo -->
     <div id="video-popup" class="video-popup">
         <span class="popup-close" onclick="closeVideoPopup()">×</span>
+        <h2>Assista ao Vídeo</h2>
         <div id="video-container"></div>
     </div>
 
-    <!-- Seções -->
+    <!-- Seção de Depoimentos com Carrossel -->
     <section class="section">
         <div class="section-inner">
             <h2>Quem mais aprovou na PM-SE</h2>
@@ -383,7 +425,7 @@
                 </div>
                 <div class="carousel-item" onclick="showVideo('https://www.youtube.com/embed/KHOXHCNttLo')">
                     <img src="https://img.youtube.com/vi/KHOXHCNttLo/0.jpg" alt="Thainá">
-                    <p>Thainá - Aprovado</p>
+                    <p>Thainá - Aprovada</p>
                     <p>"Estudei pouco tempo e o resultado foi esse."</p>
                 </div>
                 <div class="carousel-item" onclick="showVideo('https://www.youtube.com/embed/SIeTRNuA4r4')">
@@ -395,24 +437,29 @@
         </div>
     </section>
 
+    <!-- Seção "Quem é a CICLO" -->
     <section class="section">
         <div class="section-inner">
-            <h2>A CICLO</h2> <!-- Título fora do .two-columns -->
+            <h2>Quem é a CICLO</h2>
             <div class="two-columns">
                 <div class="image-container">
                     <img src="assets/img/ciclo_foto.jpg" alt="CICLO">
                 </div>
                 <div class="text-container">
-                    <p>A CICLO é uma instituição educacional com 17 anos de história. Oferece cursos preparatórios para concurso nas modalidades online e presencial em Aracaju, município onde está sediada.</p>
-                    <p>Aqui, milhares de alunos já alcançaram o sonho do cargo público. Milhares já vestiram a farda policial e mudaram a própria vida e a de seus familiares.</p>
-                    <p>Aqui você encontra o melhor corpo docente e a melhor estrutura física do nordeste. Não é a toa que o candidato comprometido com a aprovação escolhe a CICLO para sua preparação.</p>
-                    <p>Bem-vindo a CICLO - Tradição em Aprovação.</p>    
-                    </p>
+                    <p>A CICLO é uma instituição educacional com 17 anos de história. Oferece cursos preparatórios para
+                        concurso nas modalidades online e presencial em Aracaju, município onde está sediada.</p>
+                    <p>Aqui, milhares de alunos já alcançaram o sonho do cargo público. Milhares já vestiram a farda
+                        policial e mudaram a própria vida e a de seus familiares.</p>
+                    <p>Aqui você encontra o melhor corpo docente e a melhor estrutura física do nordeste. Não é a toa
+                        que o candidato comprometido com a aprovação escolhe a CICLO para sua preparação.</p>
+                    <p>Bem-vindo a CICLO - Tradição em Aprovação.</p>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="cta-button" onclick="showPopup()">Quero Ter Acesso a Black Caveira PM-SE</button>
             </div>
         </div>
     </section>
-
 
     <footer class="footer">
         <img src="assets/img/ciclo_logo.png" alt="Logo Ciclo" style="max-width: 50px;">
@@ -421,72 +468,68 @@
     </footer>
 
     <script>
+        // Função para exibir o pop-up de cadastro
         function showPopup() {
             document.getElementById('popup').style.display = 'block';
         }
 
+        // Função para fechar o pop-up de cadastro
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-            document.getElementById('emailForm').classList.remove('expanded');
-            document.getElementById('whatsappForm').classList.remove('expanded');
         }
 
-        function toggleForm(formId) {
-            const formContainer = document.getElementById(formId);
-            formContainer.classList.toggle("expanded");
-        }
-
-
+        // Validação do número de WhatsApp
         function validateWhatsAppNumber(number) {
-            // Remove todos os caracteres que não são números
-            const cleanedNumber = number.replace(/\D/g, '');
-            // Expressão regular para validar: +55 seguido de 2 dígitos (DDD) e 9 dígitos do número
-            const brazilianPhonePattern = /^55\d{11}$/;
-            return brazilianPhonePattern.test(cleanedNumber);
+            const cleanedNumber = number.replace(/\D/g, ''); // Remove caracteres não numéricos
+            return /^\d{9}$/.test(cleanedNumber); // Valida se há 9 dígitos para o número
         }
 
-        function submitForm(event, type) {
-            event.preventDefault();
-            const form = event.target;
+        // Função de validação do formulário antes de enviar
+        function validateForm() {
+            const name = document.querySelector('input[name="nome"]').value.trim();
+            const ddd = document.querySelector('input[name="ddd"]').value.trim();
+            const whatsapp = document.querySelector('input[name="whatsapp"]').value.trim();
+            const ddi = "+55";
 
-            if (type === 'whatsapp') {
-                const whatsappInput = document.getElementById("whatsapp-input");
-                const whatsappNumber = `55${whatsappInput.value.replace(/\D/g, '')}`;
-
-                if (!validateWhatsAppNumber(whatsappNumber)) {
-                    alert("Por favor, insira um número de WhatsApp válido no formato brasileiro (DDI + DDD + 9 dígitos).");
-                    return;
-                }
+            // Verificação dos campos
+            if (name === "" || ddd === "" || whatsapp === "") {
+                alert("Por favor, preencha todos os campos.");
+                return false;
             }
 
-            form.innerHTML = "<p>Enviando...</p>";
+            // Validação do DDD (apenas 2 dígitos)
+            if (!/^\d{2}$/.test(ddd)) {
+                alert("Por favor, insira um DDD válido (2 dígitos).");
+                return false;
+            }
 
-            setTimeout(() => {
-                form.innerHTML = `
-                                    <p>Cadastro enviado com sucesso!</p>
-                                    <p>SÓ MAIS UM PASSO:</p>
-                                    <a  target='_blank' 
-                                        href='https://chat.whatsapp.com/I4KwmmNeICTAn6IqglAQAm'" 
-                                        class="menu-button submit-button"
-                                        style="max-width:91%">
-                                    Entrar no Grupo PM-SE <i class="bi bi-whatsapp"></i>
-                                    </a>
-                `;
-                //closePopup();
-            }, 2000);
+            // Validação do número de WhatsApp (apenas 9 dígitos)
+            if (!validateWhatsAppNumber(whatsapp)) {
+                alert("Por favor, insira um número de WhatsApp válido (9 dígitos).");
+                return false;
+            }
+
+            // Concatena DDI, DDD e número em um único valor e atribui ao campo oculto
+            const telefoneCompleto = `${ddi}${ddd}${whatsapp}`;
+            document.getElementById('telefone-formatado').value = telefoneCompleto;
+
+            return true; // Permite o envio do formulário se tudo estiver válido
         }
 
 
+        // Função para exibir o vídeo em um pop-up
         function showVideo(url) {
             document.getElementById('video-container').innerHTML = `<iframe width="100%" height="315" src="${url}" frameborder="0" allowfullscreen></iframe>`;
             document.getElementById('video-popup').style.display = 'block';
         }
 
+        // Função para fechar o pop-up de vídeo
         function closeVideoPopup() {
             document.getElementById('video-popup').style.display = 'none';
             document.getElementById('video-container').innerHTML = '';
         }
 
+        // Fechar o pop-up ao clicar fora da área de conteúdo
         window.onclick = function (event) {
             const popup = document.getElementById('popup');
             const videoPopup = document.getElementById('video-popup');
@@ -497,6 +540,7 @@
             }
         };
     </script>
+
 </body>
 
 </html>
