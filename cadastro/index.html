@@ -50,6 +50,12 @@
             text-align: center;
         }
 
+        @media (min-width:768px) {
+            .top-content h1 {
+                padding: 40px 160px;
+            }
+        }
+
         .top-content p.subtitle {
             font-size: 1.2em;
             color: #28a745;
@@ -216,13 +222,14 @@
             border: 1px solid #ccc;
         }
 
-        .form-container .input{
+        .form-container .input {
             padding: 10px;
             margin: 3px;
             border: solid 3px #ccc;
             font-size: 20px;
 
         }
+
         .submit-button {
             padding: 12px 20px;
             font-size: 1.2em;
@@ -394,7 +401,8 @@
         <div class="top-container">
             <img src="../assets/img/blackcaveira_logo.png" alt="Black Caveira PM-SE" class="logo-large">
             <div class="top-content">
-                <h1>A maior oportunidade para se preparar e ser aprovado na PM-SE</h1>
+                <h1>PM-SE Edital Publicado:<br>Aproveite a Black Caveira e continue sua preparação com quem mais aprovou
+                    na PM-SE: A CICLO.</h1>
                 <p class="subtitle">Aperte o botão que vai te deixar mais perto da farda!</p>
                 <button class="cta-button" onclick="showPopup()">Quero Ter Acesso a Black Caveira PM-SE</button>
             </div>
@@ -402,21 +410,22 @@
     </header>
 
 
-<!-- Pop-up de Cadastro -->
-<div id="popup" class="popup-content">
-    <span class="popup-close" onclick="closePopup()">×</span>
-    <h2>Cadastre-se para Acesso Exclusivo</h2>
-    <form action="https://pmse.portalciclo.com.br/cadastro/cadastro.php" method="POST" class="form-container" onsubmit="return validateForm()">
-        <input type="text" name="nome" placeholder="Seu Nome Completo" required  class="input">
-        <div class="row">
-            <input type="text" name="ddi" value="+55" readonly class="input">
-            <input type="text" name="ddd" placeholder="DDD" maxlength="2" required class="input">
-            <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required  class="input">
-        </div>
-        <input type="hidden" id="telefone-formatado" name="telefone">
-        <button type="submit" class="submit-button">Confirmar Acesso</button>
-    </form>
-</div>
+    <!-- Pop-up de Cadastro -->
+    <div id="popup" class="popup-content">
+        <span class="popup-close" onclick="closePopup()">×</span>
+        <h2>Cadastre-se para Acesso Exclusivo</h2>
+        <form action="https://pmse.portalciclo.com.br/cadastro/cadastro.php" method="POST" class="form-container"
+            onsubmit="return validateForm()">
+            <input type="text" name="nome" placeholder="Seu Nome Completo" required class="input">
+            <div class="row">
+                <input type="text" name="ddi" value="+55" readonly class="input">
+                <input type="text" name="ddd" placeholder="DDD" maxlength="2" required class="input">
+                <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required class="input">
+            </div>
+            <input type="hidden" id="telefone-formatado" name="telefone">
+            <button type="submit" class="submit-button">Confirmar Acesso</button>
+        </form>
+    </div>
 
 
     <!-- Pop-up de Vídeo -->
