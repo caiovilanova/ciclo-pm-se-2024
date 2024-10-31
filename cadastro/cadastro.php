@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exibir a resposta da criação do lead
     //echo "Lead criado com sucesso:\n";
     //echo $response;
-    header("Location: https://pmse.portalciclo.com.br/parabens");
+    header("Location: https://pmse.portalciclo.com.br/cadastro/parabens");
 
 } else {
     echo "Acesso inválido. ";

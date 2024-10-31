@@ -46,13 +46,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5em;
             font-weight: 600;
-            margin: 20px 0 0 0;
+            margin: 0;
             text-align: center;
-        }
-        @media (min-width:768px) {
-            .top-container h1{
-                padding: 10px 160px;
-            }
         }
 
         .top-content p.subtitle {
@@ -221,14 +216,13 @@
             border: 1px solid #ccc;
         }
 
-        .form-container .input {
+        .form-container .input{
             padding: 10px;
             margin: 3px;
             border: solid 3px #ccc;
             font-size: 20px;
 
         }
-
         .submit-button {
             padding: 12px 20px;
             font-size: 1.2em;
@@ -366,73 +360,6 @@
                 /* Limita o tamanho máximo no smartphone */
             }
         }
-
-        /* Estilos Gerais para Cursos */
-        .section.cursos-presenciais,
-        .section.cursos-online {
-            padding: 50px 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #FFFFFF;
-        }
-
-        .cursos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        /* Define três colunas para desktop */
-        @media (min-width: 992px) {
-            .cursos-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .curso-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .curso-thumbnail {
-            width: 100%;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        .curso-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-
-        .curso-item p {
-            font-size: 1em;
-            margin: 10px 0;
-        }
-
-        .preco {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #28a745;
-        }
-
-        .curso-button {
-            padding: 12px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #FFFFFF;
-            background: linear-gradient(45deg, #28a745, #1e7e34);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .curso-button:hover {
-            transform: scale(1.05);
-        }
     </style>
     <!-- Meta Pixel Code -->
     <script>
@@ -467,131 +394,29 @@
         <div class="top-container">
             <img src="assets/img/blackcaveira_logo.png" alt="Black Caveira PM-SE" class="logo-large">
             <div class="top-content">
-                <h1>Sua chance de se preparar com quem mais aprovou na PM-SE - A CICLO</h1>
-                <p class="subtitle">Essa oportunidade encerra em algumas horas!</p>
-                <button class="cta-button" onclick = "scrollToCourses()">VER CURSOS EM OFERTA</button>
+                <h1>A maior oportunidade para se preparar e ser aprovado na PM-SE</h1>
+                <p class="subtitle">Aperte o botão que vai te deixar mais perto da farda!</p>
+                <button class="cta-button" onclick="showPopup()">Quero Ter Acesso a Black Caveira PM-SE</button>
             </div>
         </div>
     </header>
 
 
-    <!-- Seção de Cursos Presenciais com Desconto -->
-    <section class="section cursos-presenciais" id="cursos-em-oferta">
-        <div class="section-inner">
-            <h2>Cursos Presenciais na Black Caveira</h2>
-            <div class="cursos-grid">
-
-                <!-- Curso 1 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_soldado.jpg" alt="Curso Presencial 1" class="curso-thumbnail">
-                    <h3>Soldado:<br>Turma Semanal</h3>
-                    <p>Você escolherá um turno entre manhã, tarde ou noite. Serão 43 encontros de 3 horas.</p>
-                    <p class="preco">10x R$ 34,70</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://portalciclo.com.br/policia-militar-de-sergipe-soldado/')">Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 2 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_soldado.jpg" alt="Curso Presencial 1" class="curso-thumbnail">
-                    <h3>Soldado:<br>Turma aos Sábados</h3>
-                    <p>Turma aos Sábados: 18 blocos de 04 horas cada. Sábado: 08h às 18h</p>
-                    <p class="preco">10x R$ 24,70</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://portalciclo.com.br/policia-militar-de-sergipe-soldado/')">Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 3 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_questoes_soldado.jpg" alt="Curso Presencial 1" class="curso-thumbnail">
-                    <h3>Soldado:<br>Resolução de Questões</h3>
-                    <p>Domingo: 09h às 13h. 09 blocos de aula, sendo cada bloco de 04h.</p>
-                    <p class="preco">10x R$ 14,70</p>
-                    <button class="cta-button curso-button" onclick='acessarCurso("https://portalciclo.com.br/resolucao-de-questoes-selecon-pm-se-soldado/")'>Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 4 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_oficial.jpg" alt="Curso Presencial 1" class="curso-thumbnail">
-                    <h3>Oficial:<br>Turma Semanal</h3>
-                    <p>Você escolherá um turno entre manhã, tarde ou noite. Serão 43 encontros de 3 horas.</p>
-                    <p class="preco">10x R$ 34,70</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://portalciclo.com.br/policia-militar-de-sergipe-oficial/')">Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 5 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_oficial.jpg" alt="Curso Presencial 1" class="curso-thumbnail">
-                    <h3>Oficial:<br>Turma aos Sábados</h3>
-                    <p>Turma aos Sábados: 18 blocos de 04 horas cada. Horário: 08h às 18h.</p>
-                    <p class="preco">10x R$ 24,70</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://portalciclo.com.br/policia-militar-de-sergipe-oficial/')">Acessar o Curso</button>
-                </div>
-                <!-- Curso 6 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_presencial_questoes_oficial.jpg" alt="Oficial da PM - Resolução de Questões" class="curso-thumbnail">
-                    <h3>Oficial:<br>Resolução de Questões</h3>
-                    <p>Domingo: 09h às 13h. 09 blocos de aula, sendo cada bloco de 04h.</p>
-                    <p class="preco">10x R$ 14,70</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://portalciclo.com.br/resolucao-de-questoes-selecon-pm-se-oficial/')">Acessar o Curso</button>
-                </div>
-
-
-
-            </div>
+<!-- Pop-up de Cadastro -->
+<div id="popup" class="popup-content">
+    <span class="popup-close" onclick="closePopup()">×</span>
+    <h2>Cadastre-se para Acesso Exclusivo</h2>
+    <form action="https://pmse.portalciclo.com.br/cadastro/cadastro.php" method="POST" class="form-container" onsubmit="return validateForm()">
+        <input type="text" name="nome" placeholder="Seu Nome Completo" required  class="input">
+        <div class="row">
+            <input type="text" name="ddi" value="+55" readonly class="input">
+            <input type="text" name="ddd" placeholder="DDD" maxlength="2" required class="input">
+            <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required  class="input">
         </div>
-    </section>
-
-    <!-- Seção de Cursos Online com Desconto -->
-    <section class="section cursos-online">
-        <div class="section-inner">
-            <h2>Cursos Online na Black Caveira</h2>
-            <div class="cursos-grid">
-                <!-- Curso 1 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_online_soldado.jpg" alt="Curso Online Soldado da PM-SE" class="curso-thumbnail">
-                    <h3>Soldado:<br>Curso Online Completo</h3>
-                    <p>Atualizado pós-edital. Acesso até a data da prova. Inclui curso extra de questões Selecon e três simulados.</p>
-                    <p class="preco">R$ 247</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://online.portalciclo.com.br/ver/curso/pm-se-soldado/')">Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 2 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_online_oficial.jpg" alt="Curso Online Oficial da PM-SE" class="curso-thumbnail">
-                    <h3>Oficial:<br>Curso Online Completo</h3>
-                    <p>Atualizado pós-edital. Acesso até a data da prova. Inclui curso extra de questões Selecon e três simulados.</p>
-                    <p class="preco">R$ 247</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://online.portalciclo.com.br/ver/curso/pm-se-oficial/')">Acessar o Curso</button>
-                </div>
-
-                <!-- Curso 3 -->
-                <div class="curso-item">
-                    <img src="assets/img/curso_online_portugues.jpg" alt="Curso Online Português para PM-SE" class="curso-thumbnail">
-                    <h3>Soldado e Oficial: Português para PM-SE</h3>
-                    <p>Aulas 100% atualizadas com a didática super elogiada do professor Plínio Monstro.</p>
-                    <p class="preco">R$ 97</p>
-                    <button class="cta-button curso-button" onclick="acessarCurso('https://online.portalciclo.com.br/ver/curso/pm-se-soldado-portugues/')">Acessar o Curso</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Pop-up de Cadastro -->
-    <div id="popup" class="popup-content">
-        <span class="popup-close" onclick="closePopup()">×</span>
-        <h2>Cadastre-se para Acesso Exclusivo</h2>
-        <form action="https://pmse.portalciclo.com.br/cadastro.php" method="POST" class="form-container"
-            onsubmit="return validateForm()">
-            <input type="text" name="nome" placeholder="Seu Nome Completo" required class="input">
-            <div class="row">
-                <input type="text" name="ddi" value="+55" readonly class="input">
-                <input type="text" name="ddd" placeholder="DDD" maxlength="2" required class="input">
-                <input type="tel" name="whatsapp" placeholder="Número de WhatsApp" maxlength="9" required class="input">
-            </div>
-            <input type="hidden" id="telefone-formatado" name="telefone">
-            <button type="submit" class="submit-button">Confirmar Acesso</button>
-        </form>
-    </div>
+        <input type="hidden" id="telefone-formatado" name="telefone">
+        <button type="submit" class="submit-button">Confirmar Acesso</button>
+    </form>
+</div>
 
 
     <!-- Pop-up de Vídeo -->
@@ -643,8 +468,8 @@
                     <p>Bem-vindo a CICLO - Tradição em Aprovação.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 60px;">
-                <button class="cta-button" onclick = "scrollToCourses()">VER CURSOS EM OFERTA</button>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="cta-button" onclick="showPopup()">Quero Ter Acesso a Black Caveira PM-SE</button>
             </div>
         </div>
     </section>
@@ -727,16 +552,6 @@
                 closeVideoPopup();
             }
         };
-
-        function acessarCurso(link) {
-            window.location.href = link;
-        }
-
-        
-        function scrollToCourses() {
-            const section = document.getElementById("cursos-em-oferta");
-            section.scrollIntoView({ behavior: "smooth" });
-        }
     </script>
 
 </body>
